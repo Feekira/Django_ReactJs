@@ -2,12 +2,14 @@ import React from 'react';
 import ItemComponent from './ItemComponent';
 
 export default function ListComponent(props){
+
+    const items = props.items
+
     return (
         <div>
             <h2>{props.listName}</h2>
             <ul>
-                <ItemComponent name={"meu item"} />
-                <ItemComponent name={"meu item 2"}/>
+                {items.map(item => <ItemComponent name={item.name} key={item.id} status={item.done}/>)}
             </ul>
         </div>
     )

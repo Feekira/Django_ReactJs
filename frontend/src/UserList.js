@@ -29,7 +29,7 @@ export default class UserList extends React.Component{
         
         return(
             <div>
-                {dataApi.map(list => <ListComponent key={list.id} listName={list.name}/>)}
+                {dataApi.map(list => <ListComponent key={list.id} listName={list.name} items={list.item_set}/>)}
             </div>
         )
     }
