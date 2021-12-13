@@ -19,6 +19,11 @@ export default class LoginComponent extends React.Component{
       handleChangePassword(event) {
         this.setState({password: event.target.value});
       }
+
+      logout(event){
+        localStorage.removeItem('token');
+        this.setState({token:null});
+      }
     
       handleSubmit(event) {
         var url = 'http://127.0.0.1:8000/api-token-auth/';
@@ -52,6 +57,11 @@ export default class LoginComponent extends React.Component{
             </form>
             );
         else
-            return <UserList/>
+            return (
+                <div>
+                    <UserList/>
+                    <button onClick={() => this.logout()}>Logout</button>
+                </div>
+            )
     }
 }
