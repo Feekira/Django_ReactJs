@@ -1,6 +1,6 @@
 import React from 'react';
 import ListComponent from './ListComponent';
-import LoginComponent from './LoginComponent';
+// import LoginComponent from './LoginComponent';
 
 export default class UserList extends React.Component{
 
@@ -14,7 +14,7 @@ export default class UserList extends React.Component{
             }
         }
 
-        config.headers['Authorization'] = 'Token 46e7cc91a3643c6d9024e98e6f8d8e4f0ca1a48f'
+        config.headers['Authorization'] = 'Token ' + localStorage.getItem('token')
 
         var url = 'http://localhost:8000/list/'
         const response = await fetch(url,config);
@@ -27,14 +27,14 @@ export default class UserList extends React.Component{
     render(){
 
         const dataApi = this.state.lists;
-        var token = ''
-        if(token==='')
-            return <LoginComponent/>
-        else        
-            return(
-                <div>
-                    {dataApi.map(list => <ListComponent key={list.id} listName={list.name} items={list.item_set}/>)}
-                </div>
-            )
+        // var token = localStorage.getItem('token')
+        // if(!token)
+        //     return <LoginComponent/>
+        // else        
+        return(
+            <div>
+                {dataApi.map(list => <ListComponent key={list.id} listName={list.name} items={list.item_set}/>)}
+            </div>
+        )
     }
 }
